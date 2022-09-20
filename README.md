@@ -1,9 +1,9 @@
-<h1 align='center'> Huffman Zipper</h1>
+<h1 align='center'> FileZipper</h1>
 <h3 align='center'> Yet another file compressor/decompressor, using a C++ huffman-coding algorithm implementation.</h3>
 <img center='align' src='https://cdn.shortpixel.ai/client/q_glossy,ret_img,w_1550/https://itpack.be/wp-content/uploads/2019/06/Naamloos.png'/>
 
-We use **Huffman's algorithm** to construct **a tree** that is used for data compression. 
-We assume that each character has an associated weight equal to the number of times the character occurs in a file,
+Used **Huffman's algorithm** to construct **a tree** that is used for data compression. 
+Assumed that each character has an associated weight equal to the number of times the character occurs in a file.
 When compressing a file we'll need to calculate these weights.
 
 ## Huffman Coding Algorithm Description
@@ -27,10 +27,10 @@ Repeat this step until there is only one tree.
 
 ---
 
-## Our Implemetation of Algorithm
+## Implemetation of Algorithm
 
 There are two parts to an implementation: a compression program and an un-compression/decompression program. 
-You need both to have a useful compression utility. We'll assume these are separate programs, but they share many classes, functions, modules, code or whatever unit-of-programming you're using. 
+You need both to have a useful compression utility. We'll assume these are separate programs, but they share many classes, functions, modules, code. 
 
 - We'll call the program that reads a regular file and produces a compressed file the **compression or huffing program**.  
 - The program that does the reverse, producing a regular file from a compressed file, will be called the **uncompression or un-huffing program**.
@@ -57,8 +57,8 @@ When you write output the operating system typically buffers the output for effi
 
 In any case, when you write 3 bits, then 2 bits, then 10 bits, all the bits are eventually written, but you cannot be sure precisely when they're written during the execution of your program. Also, because of buffering, if all output is done in eight-bit chunks and your program writes exactly 61 bits explicitly, then 3 extra bits will be written so that the number of bits written is a multiple of eight.
 
-Our decompressing/un-huff program must have some mechanism to account for these extra or "padding" bits since these bits do not represent compressed information.
-So, we check if the size of the bits string is multiple of 8 or not by checking the modulo of 8. Using that modulo value we can calculate the number of bits that need to be padded and handle them correctly. 
+Decompressing/un-huff program must have some mechanism to account for these extra or "padding" bits since these bits do not represent compressed information.
+So, check if the size of the bits string is multiple of 8 or not by checking the modulo of 8. Using that modulo value we can calculate the number of bits that need to be padded and handle them correctly. 
 
-Finally, we added a **pseudo EOF character**, and we chose it out of the ASCII table in the human readable range so we are not limiting the user to not use any ASCII characters.
+Finally, added a **pseudo EOF character**, and chose it out of the ASCII table in the human readable range so that not limiting the user to not use any ASCII characters.
 
